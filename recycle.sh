@@ -1,19 +1,10 @@
 #!/bin/bash
 
-# -------------------------------
-# RECYCLE BIN IMPLEMENTATION
-# Author : Shivansh Rana
-# Description : A simple menu-driven recycle bin system in shell
-# -------------------------------
-
 RECYCLE_DIR="$HOME/.recycle_bin"
 
-# Create recycle bin directory if it doesn't exist
 if [ ! -d "$RECYCLE_DIR" ]; then
     mkdir "$RECYCLE_DIR"
 fi
-
-# Function to move file to recycle bin
 delete_file() {
     read -p "Enter file name to delete: " file
     if [ -f "$file" ]; then
@@ -23,14 +14,11 @@ delete_file() {
         echo "❌ File not found!"
     fi
 }
-
-# Function to list files in recycle bin
 list_files() {
     echo "🗑️ Files in Recycle Bin:"
     ls -l "$RECYCLE_DIR"
 }
 
-# Function to restore file
 restore_file() {
     read -p "Enter file name to restore: " file
     if [ -f "$RECYCLE_DIR/$file" ]; then
@@ -41,7 +29,6 @@ restore_file() {
     fi
 }
 
-# Function to permanently delete a file
 permanent_delete() {
     read -p "Enter file name to permanently delete: " file
     if [ -f "$RECYCLE_DIR/$file" ]; then
@@ -52,7 +39,6 @@ permanent_delete() {
     fi
 }
 
-# Function to empty recycle bin
 empty_bin() {
     read -p "Are you sure you want to permanently delete all files? (y/n): " confirm
     if [ "$confirm" = "y" ]; then
@@ -63,9 +49,6 @@ empty_bin() {
     fi
 }
 
-# -------------------------------
-# Menu-driven interface
-# -------------------------------
 while true; do
     echo "-------------------------------"
     echo "   🗑️ RECYCLE BIN MENU"
